@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <title>SpotxTube | Premium Thumbnail Design Studio</title>
+  <!-- Google Fonts + Font Awesome 6 -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'Poppins', sans-serif;
+      background: radial-gradient(circle at 10% 20%, #0a0a0c, #0D0D0D);
+      color: #f0f0f0;
+      overflow-x: hidden;
+      transition: background 0.3s ease, color 0.2s ease;
+    }
+
+    body.light {
+      background: #eef2ff;
+      color: #111;
+    }
+
+    body.light .glass-card,
+    body.light nav,
+    body.light .mobile-menu,
+    body.light .testimonial-card,
+    body.light .faq-item,
+    body.light .service-card,
+    body.light .portfolio-card {
+      background: rgba(255, 255, 255, 0.6) !important;
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      color: #111;
+    }
+
+    body.light .hero h1,
+    body.light .hero p,
+    body.light .section-title {
+      color: #111;
+    }
+
+    .blob {
+      position: fixed;
+      width: 50vw;
+      height: 50vw;
+      background: radial-gradient(circle, rgba(0,245,255,0.25), rgba(0,255,157,0.15));
+      filter: blur(70px);
+      border-radius: 50%;
+      z-index: -2;
+      animation: floatBlob 20s infinite alternate ease-in-out;
+    }
+
+    .blob-1 { top: -20vh; left: -20vw; background: #00F5FF30; }
+    .blob-2 { bottom: -10vh; right: -10vw; background: #A78BFA30; animation-duration: 25s; }
+    .blob-3 { top: 40%; left: 30%; width: 40vw; height: 40vw; background: #00FF9D20; animation-duration: 18s; }
+
+    @keyframes floatBlob {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(5%, 7%) scale(1.2); }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13, 13, 18, 0.75);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(0, 245, 255, 0.25);
+      padding: 0.8rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #00F5FF, #00FF9D);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hamburger {
+      background: none;
+      border: none;
+      font-size: 2rem;
+      color: #00F5FF;
+      cursor: pointer;
+      width: 52px;
+      height: 52px;
+      border-radius: 30px;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: -280px;
+      width: 280px;
+      height: 100vh;
+      background: rgba(18, 18, 28, 0.95);
+      backdrop-filter: blur(20px);
+      z-index: 200;
+      transition: left 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      padding: 2rem 1.5rem;
+      border-right: 1px solid #00F5FF;
+    }
+
+    .mobile-menu.open { left: 0; }
+    .menu-close { align-self: flex-end; font-size: 2rem; background: none; border: none; color: #00F5FF; cursor: pointer; }
+    .menu-links { display: flex; flex-direction: column; gap: 1.5rem; }
+    .menu-links a { color: white; font-size: 1.3rem; text-decoration: none; }
+
+    .hero { padding: 3rem 0 2rem; text-align: center; }
+    .hero h1 { font-size: 2.4rem; font-weight: 800; background: linear-gradient(to right, #FFF, #00F5FF, #A78BFA); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .cta-glow {
+      background: linear-gradient(95deg, #00F5FF, #00FF9D);
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 60px;
+      color: #0D0D0D;
+      cursor: pointer;
+      box-shadow: 0 0 12px #00F5FF;
+    }
+
+    .thumbnail-preview {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .thumb-sample {
+      width: 110px;
+      height: 70px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 12px;
+      border: 2px solid rgba(0,245,255,0.5);
+    }
+
+    .trust-section { margin: 2rem 0; overflow: hidden; white-space: nowrap; }
+    .scroll-logos { display: inline-flex; gap: 2rem; animation: scrollX 20s linear infinite; }
+    .scroll-logos i { font-size: 2rem; color: #ddd; margin-right: 2rem; }
+    @keyframes scrollX { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    .section-title { font-size: 2rem; font-weight: 700; margin: 2rem 0 1rem; background: linear-gradient(135deg, #FFF, #A78BFA); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+    .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .service-card { background: rgba(25, 25, 35, 0.6); backdrop-filter: blur(8px); border-radius: 1.5rem; padding: 1.2rem; text-align: center; border: 1px solid rgba(0,245,255,0.2); }
+    .service-card i { font-size: 2.2rem; color: #00FF9D; }
+
+    .filter-group { display: flex; gap: 0.8rem; flex-wrap: wrap; margin: 1rem 0; }
+    .filter-btn { background: rgba(255,255,240,0.1); border: none; padding: 0.6rem 1.2rem; border-radius: 40px; color: white; }
+    .filter-btn.active { background: #00F5FF; color: #0D0D0D; }
+
+    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem; }
+    .portfolio-card { background: rgba(20,20,32,0.7); backdrop-filter: blur(6px); border-radius: 1.2rem; overflow: hidden; aspect-ratio: 16 / 9; position: relative; cursor: pointer; }
+    .portfolio-card .port-img { width: 100%; height: 100%; background-size: cover; background-position: center; }
+    .overlay { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); transform: translateY(100%); transition: transform 0.2s ease; text-align: center; padding: 8px; }
+    .portfolio-card:active .overlay { transform: translateY(0); }
+    .view-btn { background: #00F5FF; border: none; padding: 6px 12px; border-radius: 40px; }
+
+    .testimonial-carousel { position: relative; overflow: hidden; }
+    .testimonial-track { display: flex; transition: transform 0.4s ease; gap: 1rem; }
+    .testimonial-card { flex: 0 0 85%; background: rgba(30,30,45,0.6); backdrop-filter: blur(12px); border-radius: 1.8rem; padding: 1.4rem; }
+
+    .faq-item { background: rgba(20,20,30,0.5); backdrop-filter: blur(8px); border-radius: 1.2rem; margin-bottom: 1rem; overflow: hidden; }
+    .faq-question { display: flex; justify-content: space-between; padding: 1rem; font-weight: 600; cursor: pointer; }
+    .faq-answer { max-height: 0; padding: 0 1rem; overflow: hidden; transition: max-height 0.4s ease; }
+    .faq-item.active .faq-answer { max-height: 180px; padding-bottom: 1rem; }
+
+    footer { margin-top: 3rem; background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); border-radius: 2rem 2rem 0 0; padding: 2rem 1rem; text-align: center; }
+    .social-icons { display: flex; gap: 1.5rem; justify-content: center; font-size: 1.6rem; margin: 1rem 0; }
+    .social-icons a { color: #00F5FF; }
+
+    @media (min-width: 768px) {
+      .services-grid { grid-template-columns: repeat(3,1fr); }
+      .portfolio-grid { grid-template-columns: repeat(3,1fr); }
+      .testimonial-card { flex: 0 0 45%; }
+      .hero h1 { font-size: 3rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <nav>
+    <div class="logo">SpotxTube</div>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="globalThemeToggle" style="background:none; border:none; font-size:1.6rem; color:#00F5FF;"><i class="fas fa-moon"></i></button>
+      <button class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="menu-close" id="closeMenuBtn"><i class="fas fa-times"></i></button>
+    <div class="menu-links">
+      <a href="#home">Home</a><a href="#services">Services</a><a href="#portfolio">Portfolio</a>
+      <a href="#testimonials">Reviews</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+    </div>
+    <button class="theme-toggle-mob" id="mobileThemeToggle" style="margin-top:auto; background:rgba(255,255,255,0.1); border:none; padding:12px; border-radius:40px; color:white;"><i class="fas fa-circle-half-stroke"></i> Switch Mode</button>
+  </div>
+
+  <main>
+    <!-- HERO SECTION - আপনার ইমেজ এখানে বসবে -->
+    <section id="home" class="hero container">
+      <h1>Boost Your CTR with Stunning Thumbnails</h1>
+      <p>Professional designs that hook viewers & explode your views.</p>
+      <button class="cta-glow" id="heroContactBtn">Get a Quote →</button>
+      <div class="thumbnail-preview">
+        <!-- 🔻 ১ম ইমেজ: আপনার IMG_20260504_122728.jpg -->
+        <div class="thumb-sample" style="background-image: url(IMG_20260504_122728.jpg');"></div>
+        <!-- 🔻 ২য় ইমেজ: আপনার IMG_20260504_122306.jpg -->
+        <div class="thumb-sample" style="background-image: url('IMG_20260504_122306.jpg');"></div>
+        <!-- বাড়তি ডেমো থাম্বনেইল -->
+        <div class="thumb-sample" style="background-image: url('IMG_20260504_122728.jpg');"></div>
+        <div class="thumb-sample" style="background-image: url('IMG_20260504_122306.jpg');"></div>
+      </div>
+    </section>
+
+    <div class="container trust-section">
+      <span style="display: block; text-align: center;">Trusted by 10,000+ YouTubers</span>
+      <div class="scroll-logos">
+        <i class="fab fa-youtube"></i><i class="fab fa-instagram"></i><i class="fab fa-twitch"></i><i class="fab fa-tiktok"></i><i class="fab fa-discord"></i>
+        <i class="fab fa-youtube"></i><i class="fab fa-instagram"></i><i class="fab fa-twitch"></i><i class="fab fa-tiktok"></i><i class="fab fa-discord"></i>
+      </div>
+    </div>
+
+    <div class="container" id="services">
+      <h2 class="section-title">Premium Solutions</h2>
+      <div class="services-grid">
+        <div class="service-card"><i class="fas fa-palette"></i><h3>Thumbnail Design</h3><p>High-CTR concepts</p></div>
+        <div class="service-card"><i class="fas fa-chalkboard-user"></i><h3>Channel Branding</h3><p>Banners & overlays</p></div>
+        <div class="service-card"><i class="fas fa-mobile-alt"></i><h3>Shorts Covers</h3><p>Vertical & viral ready</p></div>
+        <div class="service-card"><i class="fas fa-chart-line"></i><h3>CTR Optimization</h3><p>A/B tested designs</p></div>
+        <div class="service-card"><i class="fas fa-ad"></i><h3>Video Ads</h3><p>Promo thumbnails</p></div>
+        <div class="service-card"><i class="fas fa-clock"></i><h3>24hr Delivery</h3><p>Express turnarounds</p></div>
+      </div>
+    </div>
+
+    <div class="container" id="portfolio">
+      <h2 class="section-title">Recent Works</h2>
+      <div class="filter-group">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="earnings">Earnings</button>
+        <button class="filter-btn" data-filter="gaming">Gaming</button>
+        <button class="filter-btn" data-filter="tech">Tech</button>
+      </div>
+      <div class="portfolio-grid" id="portfolioGrid"></div>
+    </div>
+
+    <div class="container" id="testimonials">
+      <h2 class="section-title">Creator love</h2>
+      <div class="testimonial-carousel">
+        <div class="testimonial-track" id="testimonialTrack"></div>
+        <div style="display: flex; justify-content: center; gap: 16px; margin-top: 16px;">
+          <button class="carousel-btn" id="prevTesti"><i class="fas fa-chevron-left"></i></button>
+          <button class="carousel-btn" id="nextTesti"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" id="faq">
+      <h2 class="section-title">Common Questions</h2>
+      <div class="faq-list" id="faqList"></div>
+    </div>
+
+    <div class="container" style="text-align: center; margin: 3rem 0;">
+      <h2>Ready to 10X Your Click-Through Rate?</h2>
+      <button class="cta-glow" id="finalCtaBtn" style="margin-top: 1rem;">Contact Studio →</button>
+    </div>
+  </main>
+
+  <footer>
+    <div class="logo" style="font-size: 2rem;">SpotxTube</div>
+    <p>pixel perfect thumbnails, data-driven success</p>
+    <div class="social-icons">
+      <a href="https://youtube.com/@saheb__yt-mr?si=iIFKOKFHSCm6nC9j" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="https://www.instagram.com/saheb_max_dj?igsh=MTBrenh0MTdvNnNiaQ==" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://youtube.com/@saheb__yt-mr?si=iIFKOKFHSCm6nC9j" target="_blank"><i class="fab fa-telegram"></i></a>
+      <a href="mailto:saheb88906@gmail.com"><i class="fas fa-envelope"></i></a>
+    </div>
+    <p style="font-size: 0.75rem;">© 2025 SpotxTube — CTR specialists</p>
+  </footer>
+
+  <script>
+    // পোর্টফোলিও আইটেম - এখানে আপনার ইমেজ দুটো বসানো হয়েছে
+    const portfolioItems = [
+      { title: "Video Editing Earnings", cat: "earnings", imgStyle: "background-image: url('IMG_20260504_122728.jpg');" },
+      { title: "Beauty Student Viral", cat: "earnings", imgStyle: "background-image: url('IMG_20260504_122306.jpg');" },
+      { title: "MrBeast Challenge", cat: "gaming", imgStyle: "background-image: url('IMG_20260504_122728.jpg');" },
+      { title: "Fortnite New Update", cat: "gaming", imgStyle: "background-image: url('IMG_20260504_122306.jpg');" },
+      { title: "iPhone 15 Review", cat: "tech", imgStyle: "background-image: url('IMG_20260504_122728.jpg');" },
+      { title: "Tech Gadgets 2025", cat: "tech", imgStyle: "background-image: url('IMG_20260504_122306.jpg');" }
+    ];
+
+    const portfolioGrid = document.getElementById('portfolioGrid');
+    function renderPortfolio(filter = 'all') {
+      portfolioGrid.innerHTML = '';
+      const filtered = filter === 'all' ? portfolioItems : portfolioItems.filter(i => i.cat === filter);
+      filtered.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'portfolio-card';
+        card.innerHTML = `<div class="port-img" style="${item.imgStyle}; background-size: cover;"></div>
+                          <div class="overlay"><button class="view-btn">View Project</button></div>`;
+        card.querySelector('.view-btn').addEventListener('click', () => alert(`✨ "${item.title}" - custom thumbnail concept ready.`));
+        portfolioGrid.appendChild(card);
+      });
+    }
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderPortfolio(btn.getAttribute('data-filter'));
+      });
+    });
+    renderPortfolio('all');
+
+    // টেস্টিমোনিয়াল ক্যারোসেল
+    let currentTesti = 0;
+    const track = document.getElementById('testimonialTrack');
+    const testimonials = [
+      { name: "Alex Rivera", channel: "TechGuru", rating: 5, text: "CTR doubled after SpotxTube redesign!", avatar: "👨‍💻" },
+      { name: "Sofia Chen", channel: "GamingQueen", rating: 5, text: "Super fast delivery + insane creativity.", avatar: "👩‍🎮" },
+      { name: "Jordan Lee", channel: "Vlogventure", rating: 4, text: "Beautiful aesthetics and communicative team!", avatar: "📸" }
+    ];
+    function buildTestimonials() {
+      track.innerHTML = '';
+      testimonials.forEach(t => {
+        const card = document.createElement('div');
+        card.className = 'testimonial-card';
+        card.innerHTML = `<div style="display:flex; gap:12px;"><span style="font-size:3rem;">${t.avatar}</span><div><strong>${t.name}</strong><br>${t.channel}</div></div>
+        <div class="stars">${'★'.repeat(t.rating)}${'☆'.repeat(5-t.rating)}</div><p>“${t.text}”</p>`;
+        track.appendChild(card);
+      });
+      updateCarousel();
+    }
+    function updateCarousel() { track.style.transform = `translateX(-${currentTesti * 88}%)`; }
+    document.getElementById('nextTesti').addEventListener('click', () => { currentTesti = (currentTesti + 1) % testimonials.length; updateCarousel(); });
+    document.getElementById('prevTesti').addEventListener('click', () => { currentTesti = (currentTesti - 1 + testimonials.length) % testimonials.length; updateCarousel(); });
+    setInterval(() => { currentTesti = (currentTesti + 1) % testimonials.length; updateCarousel(); }, 5000);
+    buildTestimonials();
+
+    // FAQ
+    const faqs = [
+      { q: "How fast can you deliver?", a: "Standard delivery within 24 hours." },
+      { q: "Do you offer revisions?", a: "Yes! 2 free revisions per thumbnail." },
+      { q: "What formats do you provide?", a: "PNG, JPG, PSD source files." }
+    ];
+    const faqContainer = document.getElementById('faqList');
+    faqs.forEach(faq => {
+      const item = document.createElement('div');
+      item.className = 'faq-item';
+      item.innerHTML = `<div class="faq-question"><span>${faq.q}</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer">${faq.a}</div>`;
+      item.querySelector('.faq-question').addEventListener('click', () => item.classList.toggle('active'));
+      faqContainer.appendChild(item);
+    });
+
+    // মোবাইল মেনু ও থিম টগল
+    const hamburger = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeMenu = document.getElementById('closeMenuBtn');
+    hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+    closeMenu.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    document.querySelectorAll('.menu-links a').forEach(link => link.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+    const themeToggle = document.getElementById('globalThemeToggle');
+    const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+    function toggleTheme() {
+      document.body.classList.toggle('light');
+      const isLight = document.body.classList.contains('light');
+      localStorage.setItem('spotxtube-theme', isLight ? 'light' : 'dark');
+      themeToggle.querySelector('i').className = isLight ? 'fas fa-sun' : 'fas fa-moon';
+    }
+    themeToggle.addEventListener('click', toggleTheme);
+    mobileThemeToggle.addEventListener('click', () => { toggleTheme(); mobileMenu.classList.remove('open'); });
+    if(localStorage.getItem('spotxtube-theme') === 'light') toggleTheme();
+
+    // CTA বাটন লিংক
+    document.getElementById('heroContactBtn')?.addEventListener('click', () => window.open('https://youtube.com/@saheb__yt-mr?si=iIFKOKFHSCm6nC9j', '_blank'));
+    document.getElementById('finalCtaBtn')?.addEventListener('click', () => window.open('https://youtube.com/@saheb__yt-mr?si=iIFKOKFHSCm6nC9j', '_blank'));
+  </script>
+</body>
+</html>
